@@ -24,7 +24,8 @@ import pickle
 from collections import Counter
 
 # import data
-wine = pd.read_csv('winequality-red.csv')
+
+wine = pd.read_csv('flask-heroku-example/static/wine-data.csv')
 
 Counter(wine['quality'])
 
@@ -69,13 +70,13 @@ rf.fit(X_train, y_train)
 rf_predict = rf.predict(X_test)
 
 # get importance
-importance = rf.feature_importances_
+# importance = rf.feature_importances_
 # summarize feature importance
-for i, v in enumerate(importance):
-    print('Feature: %0d, Score: %.5f' % (i, v))
+# for i, v in enumerate(importance):
+#     print('Feature: %0d, Score: %.5f' % (i, v))
 # plot feature importance
-plt.bar([x for x in range(len(importance))], importance)
-plt.show()
+# plt.bar([x for x in range(len(importance))], importance)
+# plt.show()
 
 # save the model to disk
 filename = 'finalized_model.sav'
