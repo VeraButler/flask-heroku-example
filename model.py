@@ -3,5 +3,5 @@ import pickle
 
 
 def get_prediction(user_input):
-    loaded_model = pickle.load(open('finalized_lr_model.sav', 'rb'))
+    loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
     return loaded_model.predict([user_input])
