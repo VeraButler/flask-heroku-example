@@ -1,92 +1,29 @@
-# Deploy Your Flask Project To Heroku
+# Wine Quality Classifier
 
-This is an example repository that uses **Flask** and **Gunicorn** to deploy your project to Heroku.
+This data product is a result of the WGU capstone. This project required me to develop a fully functional data product 
+(application) addressing an identified business problem or organizational need.To the best of my ability I needed to 
+include each of the following attributes:
+* one **descriptive** method that discerns relationships and characteristics of the past data in at least three forms of visualization
+* one **nondescriptive** where a decision or trend could be inferred
 
-# Problematic
+The descriptive method should be in the domains of cluster or association analysis, and the others could include pruning 
+algorithm, discriminate analysis, regression analysis (linear, logistic), Bayesian methods, neural network, or support 
+vector machines. Be sure to include a justification of the methods selected in relationship to the goal(s) of the 
+project. 
 
-Currently, Flask is not suitable for a production environment and it doesn't scale well (see [flask documentation on deployment](http://flask.pocoo.org/docs/1.0/deploying/)).
-
-If we want to deploy our project to Heroku, we need a **Web Server Gateway Interface** (WSGI) such as **Gunicorn**.
-
-# Solution
-
-To overcome this obstacle we can use **Gunicorn** to aide us deploy our Flask project into a Heroku app.
-
-This guide _assumes_ that you already had gone through the process of installing and authenticating the [Heroku Toolbelt](https://devcenter.heroku.com/articles/heroku-cli).
-
-## Fork The Repository
-
-You should **fork the repository** and then **clone it** so you can manage your own repo and use this only as a template.
-
-```
-$ git clone https://github.com/your_username/flask-heroku-example.git
-```
-
-At this point you should be able to modify the Flask app `app.py`:
-```python
-"""Flask App Project."""
-
-from flask import Flask, jsonify
-app = Flask(__name__)
+## Descriptive Methods
+* Barplots - each individual physiochemical feature is clustered into groups by quality ratings 3-8 and displayed as a barplot
+* COrrelation Matrix Heatmap - 
+## Nondescriptive Methods
 
 
-@app.route('/')
-def index():
-    """Return homepage."""
-    json_data = {'Hello': 'World!'}
-    return jsonify(json_data)
-
-
-if __name__ == '__main__':
-    app.run()
-```
-
-**WARNING:** If you change the file name (`app.py`) and the Flask **app** (`app = Flask(__name__)`) then remember to change Heroku's Procfile:
-```
-web: gunicorn <filename>:<app_name>
-```
-
-## Create Your Heroku App
-
-You can also leave `your_app_name` empty if you want Heroku to create a randomized name.
-
-```
-$ heroku create your_app_name
-Creating app... done, ⬢ your_app_name
-https://your_app_name.herokuapp.com/ | https://git.heroku.com/your_app_name.git
-```
-
-## Deploy Your Project
-
-Your project is going to be deploy using **gunicorn** as a web server using the **Procfile** and it will be detected as a Python project since it is declared in **runtime.txt**
-
-* **Add necessary files and commit them**
-```bash
-$ git add -A
-$ git commit -am "finished flask project"
-```
-
-* **Push to Heroku**
-```bash
-$ git push heroku master
--- SNIP --
-remote: -----> Python app detected
-remote: -----> Installing python-3.6.5
-remote: -----> Installing pip
-remote: -----> Installing dependencies with Pipenv 11.8.2…
-remote:        Installing dependencies from Pipfile.lock (59a99c)…
-remote: -----> Discovering process types
-remote:        Procfile declares types -> web
-remote:
-remote: -----> Compressing...
-remote:        Done: 53.9M
-remote: -----> Launching...
-remote:        Released v3
-remote:        https://your_app_name.herokuapp.com/ deployed to Heroku
-remote:
-remote: Verifying deploy... done.
-To https://git.heroku.com/your_app_name.git
- * [new branch]      master -> master
-```
-
-That's it, you can visit your app now with `heroku open`.
+Datasets – The use of dataset(s) is a critical element and involves the gathering and measuring of information on targeted variables in a systematic fashion. This could be student collected (Please consider IRB ramifications.) or publicly accessible such as websites (e.g. Kaggle.com), governmental (e.g. Department of Labor), or software related (e.g. GitHub.com). Be sure to consider the methodology used including possible disadvantages and challenges. 
+Analytics– Using the given data, your application needs to enable decisions to be formulated or support for given trends to be provided. 
+Data Cleaning – if applicable, create a function that will make the data usable prior to actually being used by the application. Things such as featuring, parsing, cleaning, and wrangling the datasets.
+Data Visualization – You need at least three real-time (e.g. using the GUI/dashboard) formats to visualize the data in a graphic format. Look at things like charting, mapping, color theory, plots, diagrams, or other methods (tables must include heat mapping).  These, in conjunction with or as a part of your GUI, would enable users to explore or inspect the data characteristics.
+Real-Time Queries – As part of your GUI enable users to access and manipulate data real-time including data maintenance. This does not deal with data “freshness” but with the query response time being in seconds. 
+Adaptive Element – if appropriate for the business need, provide the implementation of machine-learning methods and algorithms to enable the application to improve with experience. Examples include learning associations, classification, statistical arbitrage, prediction, extraction, and regression.  
+Outcome Accuracy – provide functionalities that evaluate the accuracy of the information/outcomes given by the application. What are the parameters for valid output data and how will those be checked by the application?
+Security Measures – include industry-appropriate security features that will control access to the data and/or, how the data is stored or transmitted. The security features should be appropriate for the data product and the sensitivity of the data it interacts with. For example, with a web application this requirement might be satisfied by implementing username/password authentication. 
+Product Health Monitoring – include functionality that will enable the application’s “health” and reliability to be monitored. It should answer the questions, “Is the application performing correctly?” For example, the use of displays or logs to quickly discover, isolate and solve problems that can negatively affect the application’s performance and accuracy.  
+Dashboard – include a user-friendly, functional dashboard that enables the query and display of the data, as well as other functionality described in this section. This could be stand-alone, Web-based, or a mobile application interface. 

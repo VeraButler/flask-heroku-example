@@ -15,12 +15,40 @@ def index():
 
 @app.route("/process", methods=["GET", "POST"])
 def process_form():
-    user_input = []
+    user_input = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     formData = request.values if request.method == "GET" else request.values
+    # response = "Form Contents <pre>%s</pre>" % "<br/>\n".join(["%s:%s" % item for item in formData.items()])
+    # return response
     for item in formData.items():
-        user_input.append(item)
+        if item[0] == 'fixed-acidity':
+            user_input[0] == item[1]
+        if item[0] == 'volatile-acidity':
+            user_input[1] == item[1]
+        if item[0] == 'citric-acid':
+            user_input[2] == item[1]
+        if item[0] == 'residual-sugar':
+            user_input[3] == item[1]
+        if item[0] == 'chlorides':
+            user_input[4] == item[1]
+        if item[0] == 'free-sulfur-dioxide':
+            user_input[5] == item[1]
+        if item[0] == 'total-sulfur-dioxide':
+            user_input[6] == item[1]
+        if item[0] == 'density':
+            user_input[7] == item[1]
+        if item[0] == 'pH':
+            user_input[8] == item[1]
+        if item[0] == 'sulphates':
+            user_input[9] == item[1]
+        if item[0] == 'alcohol':
+            user_input[10] == item[1]
     response = get_prediction(user_input)
-    return response
+    if response == '2':
+        return render_template('rating.html', rating='AVERAGE')
+    elif response == '0':
+        return render_template('rating.html', rating='POOR')
+    else:
+        return render_template('rating.html', rating='EXCELLENT')
 
 
 if __name__ == '__main__':
